@@ -1,10 +1,10 @@
-package com.bridgelabz.employeePayrollService;
+package com.bridgelabz.employeePayrollService4;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
-public class JavaWatchService {
+public class Java8WatchService {
     private static final WatchEvent.Kind<?> ENTRY_DELETE = StandardWatchEventKinds.ENTRY_DELETE;
     private static final WatchEvent.Kind<?> ENTRY_MODIFY = StandardWatchEventKinds.ENTRY_MODIFY;
     private static final WatchEvent.Kind<?> ENTRY_CREATE = StandardWatchEventKinds.ENTRY_CREATE;
@@ -12,7 +12,7 @@ public class JavaWatchService {
     private final Map<WatchKey, Path> dirWatchers;
 
     // Creates a WatchService and registers the given directory
-    public JavaWatchService(Path dir) throws IOException {
+    Java8WatchService(Path dir) throws IOException {
         this.watcher = FileSystems.getDefault().newWatchService();
         this.dirWatchers = new HashMap<WatchKey, Path>();
         scanAndRegisterDirectories(dir);
@@ -29,7 +29,6 @@ public class JavaWatchService {
     private void scanAndRegisterDirectories(final Path start) throws IOException {
         // register directory and sub-directories
         Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
-
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
                 registerDirWatchers(dir);
                 return FileVisitResult.CONTINUE;
@@ -39,7 +38,7 @@ public class JavaWatchService {
 
     // Process all events for keys queued to the watcher
 
-    public void processEvents() {
+    void processEvents() {
         while (true) {
             WatchKey key; // wait for key to be signalled
             try {
@@ -78,4 +77,3 @@ public class JavaWatchService {
         }
     }
 }
-
