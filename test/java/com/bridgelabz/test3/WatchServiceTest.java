@@ -1,5 +1,5 @@
-package com.bridgelabz.test2;
-
+package com.bridgelabz.test3;
+import com.bridgelabz.employeePayrollService.JavaWatchService;
 import com.bridgelabz.employeePayrollService2.EmployeePayrollService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
-    public class FileIOTest {
+    public class WatchServiceTest {
         private static String PATH = "C:\\Users\\Rishita Prakash\\eclipse-workspace\\EmployeePayrollService\\src";
         private static String NEW_DIRECTORY_NAME = "Empty";
 
@@ -43,5 +43,11 @@ import java.util.stream.IntStream;
             Files.newDirectoryStream(playPath).forEach(System.out::println);
             Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp"))
                     .forEach(System.out::println);
+        }
+        @Test
+        public void givenADirectoryWhenWatchedListsAllTheActivities() throws IOException{
+            Path dir = Paths.get(PATH+ "/"+NEW_DIRECTORY_NAME);
+            Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+            new JavaWatchService(dir).processEvents();
         }
 }
