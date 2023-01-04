@@ -1,4 +1,4 @@
-package com.bridgelabz.employeePayrollService5;
+package com.bridgelabz.EmployeePayrollService6;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,17 @@ public class EmployeePayrollService {
     }
     public long countEntries() {
         return new EmployeePayrollServiceFileIO().countEntries();
+    }
+    /**
+     * UC6
+     *
+     * @param readFrom
+     * @return
+     */
+    public List<EmployeePayrollData> readData(IOService readFrom) {
+        if (readFrom.equals(IOService.FILE_IO))
+            return new EmployeePayrollServiceFileIO().readData();
+        return null;
     }
     public static boolean deleteFiles(File contentsToDelete) {
         File[] allContents = contentsToDelete.listFiles();
