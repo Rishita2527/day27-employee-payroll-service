@@ -1,4 +1,4 @@
-package com.bridgelabz.employeePayrollService4;
+package com.bridgelabz.employeePayrollService5;
 
 public class EmployeePayrollData {
         private int employeeId;
@@ -20,7 +20,7 @@ public class EmployeePayrollData {
         public String getEmployeeName() {
             return employeeName;
         }
-        public void setEmployeeName(String employeeName) {
+        public void setEmployeeName(String employeeName)  {
             this.employeeName = employeeName;
         }
 
